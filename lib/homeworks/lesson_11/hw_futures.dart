@@ -38,8 +38,25 @@ Future<void> runTask3() async {
   print('Час виконання: ${stopwatch.elapsed.inMilliseconds} мс');
 }
 
-// ---------------- MAIN ---------------------
+// ---------------- Task 4: Паралельне виконання Future (Future.wait) ---------------------
+Future<void> runTask4() async {
+  final stopwatch = Stopwatch()..start();
 
+  // запускаємо обидва майбутніх одночасно
+  final results = await Future.wait([
+    fetchName(),
+    fetchAge(),
+  ]);
+
+  final name = results[0];
+  final age = results[1];
+
+  print('Мене звати $name');
+  print('Мені $age');
+
+  stopwatch.stop();
+  print('Час виконання паралельно: ${stopwatch.elapsed.inMilliseconds} мс');
+}
 void main() async {
-  await runTask3();
+  await runTask4();
 }
