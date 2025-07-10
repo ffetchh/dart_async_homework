@@ -33,6 +33,25 @@ Future<void> runTask7() async {
     print('$number...');
   }
 }
+Future<void> runTask8() async {
+  // ---------------- Task 8: Робота з StreamController ---------------------
+
+  final controller = StreamController<String>();
+
+  // Прослуховуємо стрім
+  controller.stream.listen(
+    (value) => print('Отримано: $value'),
+    onDone: () => print('Стрім завершено'),
+  );
+
+  // Додаємо значення вручну
+  controller.add('Hello');
+  controller.add('World');
+  controller.add('Dart');
+
+  // Закриваємо стрім
+  await controller.close();
+}
 void main() async {
-  await runTask7();
+  await runTask8();
 }
