@@ -23,10 +23,23 @@ Future<String> fetchAge() async {
 
   return '$age $suffix';
 }
-void main() async {
+// ---------------- Task 3: Послідовне виконання Future ---------------------
+Future<void> runTask3() async {
+  final stopwatch = Stopwatch()..start(); // запускаємо таймер
+
   final name = await fetchName();
   print('Мене звати $name');
 
   final age = await fetchAge();
   print('Мені $age');
+
+  stopwatch.stop(); // зупиняємо таймер
+
+  print('Час виконання: ${stopwatch.elapsed.inMilliseconds} мс');
+}
+
+// ---------------- MAIN ---------------------
+
+void main() async {
+  await runTask3();
 }
