@@ -20,6 +20,19 @@ Future<void> runTask6() async {
   });
 }
 
+Future<void> runTask7() async {
+  // ---------------- Task 7: Зворотний відлік зі стріму (periodic) ---------------------
+
+  final countdownStream = Stream<int>.periodic(
+    Duration(seconds: 1),
+    (i) => i + 1,
+  ).take(10); // обмежуємо до 10 значень
+
+  print('--- Task 7: Відлік ---');
+  await for (final number in countdownStream) {
+    print('$number...');
+  }
+}
 void main() async {
-  await runTask6();
+  await runTask7();
 }
